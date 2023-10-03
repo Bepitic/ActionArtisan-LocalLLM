@@ -1,4 +1,4 @@
-docker run -p 9000:8080 docker-image:test
+docker run --name lambdatest -p 9000:8080 docker-image:test 
 
 # curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
 
@@ -6,4 +6,4 @@ curl "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"pay
 
 docker ps
 
-docker kill 3766c4ab331c
+docker kill lambdatest

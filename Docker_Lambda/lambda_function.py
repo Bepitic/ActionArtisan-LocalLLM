@@ -9,7 +9,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 logger.info('Loading function')
 
-def lambda_handler(event:dict, context:dict[str,object]) -> dict[str,object]:
+def handler(event:dict, context:dict[str,object]) -> dict[str,object]:
     '''
     Returns the response of the api call to openAI that narrates the action of the character.
 
