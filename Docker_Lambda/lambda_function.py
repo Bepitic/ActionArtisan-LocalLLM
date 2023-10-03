@@ -33,7 +33,6 @@ def handler(event:dict, context:dict[str,object]) -> dict[str,object]:
     luck_outcome = luck(int(e_body_json['dice']), int(e_body_json['difficulty']))
     logger.info("b4 openai")
 
-    # openai.api_key = os.environ['KEY']
     openai.api_key = os.environ.get('KEY',None)
     res = openai.ChatCompletion.create(
       model="gpt-3.5-turbo",
