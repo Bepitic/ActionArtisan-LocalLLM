@@ -386,6 +386,9 @@ Future futureRequestMethod(Map<String, String> toSend) async {
 
   var response = await http.post(url,
       headers: {
+        "Access-Control-Allow-Origin": '*',
+        "Access-Control-Allow-Headers": '*',
+        "Access-Control-Allow-Methods": '*',
         "X-Api-Key": const String.fromEnvironment('API_KEY', defaultValue: ''),
         "Content-Type": "application/json"
       },
