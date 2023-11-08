@@ -1,0 +1,3 @@
+API_AUTHORITY='www.link-to-the-api.com'
+API_PATH='/path/APIGATEWAY'
+API_KEY='your_aws_lambda_api_key'
