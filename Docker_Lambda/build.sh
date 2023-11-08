@@ -1,1 +1,1 @@
-docker build --platform linux/amd64 -t docker-image:test .
+docker build --platform linux/amd64 -t ActionArtisan-image:test .
