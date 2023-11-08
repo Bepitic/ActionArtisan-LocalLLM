@@ -8691,7 +8691,7 @@ aI7(a){var s=0,r=A.Y(t.z),q,p,o,n,m
 var $async$ajU=A.Z(function(b,c){if(b===1)return A.V(c,r)
 while(true)switch(s){case 0:p=A.aF8("https","iuli6oomd3.execute-api.us-east-1.amazonaws.com","/latest/ActRol-EP",null)
 o=t.N
-n=A.aA(["X-Api-Key","NZv2YK6u0G99WS2TjF4zz5BMy0Y3NsPI34TFEAMi","Content-Type","application/json"],o,o)
+n=A.aA(["Access-Control-Allow-Origin","*","Access-Control-Allow-Headers","*","Access-Control-Allow-Methods","*","X-Api-Key","NZv2YK6u0G99WS2TjF4zz5BMy0Y3NsPI34TFEAMi","Content-Type","application/json"],o,o)
 m=J.ar(a)
 s=3
 return A.a0(A.aIK(p,B.c0.PD(A.aA(["name",m.h(a,"name"),"race",m.h(a,"race"),"action",m.h(a,"action"),"dice",m.h(a,"dice"),"difficulty",m.h(a,"difficulty")],o,t.ob),null),n),$async$ajU)
