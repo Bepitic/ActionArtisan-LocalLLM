@@ -49,7 +49,7 @@ class NarrationScene extends StatelessWidget {
                 // print("Data snapshot");
                 // print(snapshot.data.toString());
                 var dta = jsonDecode(((snapshot.data) as Response).body);
-                return NarrationOk(narrationn: dta.toString());
+                return NarrationOk(narrationn: dta["body"].toString());
               } else {
                 return Center(
                     child: Column(
