@@ -1,3 +1,5 @@
+<img src="screenshot 2.png" width=45% height=45%></img>
+
 # Check it out at [ActionArtisan](https://main.dc3wixtzurzli.amplifyapp.com)
 
 The ActionArtisan app is a tool designed to assist Dungeon Masters (DMs) in creating vivid and immersive descriptions for various actions and scenarios in their tabletop role-playing games. This app leverages the power of OpenAI's natural language generation to provide dynamic and creative narratives that enhance the gaming experience.
