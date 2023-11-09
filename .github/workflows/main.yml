@@ -6,7 +6,8 @@ name: On Website Deploy
       - "main"
 defaults:
  run:
-  working-directory: ./explain_rol
+  shell: bash
+  #working-directory: ./explain_rol
 jobs:
   check:
     name: Check files if in explain_rol!
