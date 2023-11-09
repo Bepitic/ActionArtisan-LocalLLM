@@ -18,7 +18,7 @@ The ActionArtisan app is a tool designed to assist Dungeon Masters (DMs) in crea
 
 ## Installation
 
-1. Clone this repository: `git clone https://github.com/bepitic/ActionArtisan.git`
+1. Clone this repository: `git clone https://github.com/Bepitic/ActionArtisan-LocalLLM.git`
 
 ### AWS Lambda Backend
 
