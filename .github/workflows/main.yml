@@ -42,6 +42,7 @@ jobs:
   build_and_deploy_web:
     needs: check
     name: Build & Deploy Flutter to Web
+    if: needs.check.outputs.run_job == 'true'
     runs-on: ubuntu-latest
     # (2)
     steps:
@@ -52,14 +53,16 @@ jobs:
           channel: "stable"
           
       - name: 🌍 Enable Web
-        # working-directory: "explain_rol"
+        working-directory: ./explain_rol
         run: flutter config --enable-web
 
       - name: 📦 Get packages
-        # working-directory: "explain_rol"
+        working-directory: ./explain_rol
         run: flutter pub get
 
       - name: 🏭 Build Web Application
+        working-directory: ./explain_rol
+
         # env: # Or as an environment variable
         #   API_PATH: ${{ secrets.API_PATH }}
         #   API_AUTHORITY: ${{ secrets.API_AUTHORITY }}
@@ -69,6 +72,7 @@ jobs:
 
       # (3)
       - name: Make copy of artifacts
+        #working-directory: ./explain_rol
         run: |
           chmod u+x "${GITHUB_WORKSPACE}/createandcopytofolder.sh"
           bash "${GITHUB_WORKSPACE}/createandcopytofolder.sh"
