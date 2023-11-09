@@ -3,7 +3,6 @@ import json
 import os
 import logging
 import math
-
 import boto3
 
 logger = logging.getLogger()
@@ -28,7 +27,6 @@ def handler(event:dict, context:dict[str,object]) -> dict[str,object]:
         e_body_json = json.loads(event_body)
     else:
         e_body_json = event
-    # print(event_body)
 
     logger.info("name = " + e_body_json['name'])
     logger.info("race = " + e_body_json['race'])
@@ -36,14 +34,14 @@ def handler(event:dict, context:dict[str,object]) -> dict[str,object]:
     logger.info("dice = " + e_body_json['dice'])
     logger.info("difficulty = " + e_body_json['difficulty'])
 
-
     difficulty_str = dta._DIFFICULTY_SCALE[int(e_body_json['difficulty'])]
     luck_outcome = luck(int(e_body_json['dice']), int(e_body_json['difficulty']))
  
-    prompt =  f"Explain how '{e_body_json['name']}' a {e_body_json['race']} tried to {e_body_json['action']} of {difficulty_str} difficulty and got an{luck_outcome}, in one paragraph"
-
+    prompt =  f"<human>: Explain how '{e_body_json['name']}' a {e_body_json['race']} tried to {e_body_json['action']} of {difficulty_str} difficulty and got an{luck_outcome}, in one paragraph /n <assistant>:"
 
     max_new_tokens = int(os.environ.get('MAX_NEW_TOKENS',256))
+    endpoint_n = os.environ.get('ENDPOINT_NAME',"falcon-rol" )
+    noPrompt = os.environ.get('STRIP_PROMPT','True' ) == 'True'
 
     payload = {
         "inputs" : prompt,
@@ -52,11 +50,7 @@ def handler(event:dict, context:dict[str,object]) -> dict[str,object]:
         }
     }
 
-    endpoint_n = os.environ.get('ENDPOINT_NAME',"falcon-rol" )
-    noPrompt = os.environ.get('STRIP_PROMPT',True )
-
     runtime = boto3.client("runtime.sagemaker")
-
     response = runtime.invoke_endpoint(EndpointName=endpoint_n, ContentType="application/json", Body=json.dumps(payload))
     res = response['Body'].read().decode('utf8')
 
@@ -105,7 +99,6 @@ def luck(luck: int, difficult: int) -> str:
         difference *= -1;
         difference = (difference/4)%4;
         difference += 1; 
-
         resp = achievement_scale[math.floor(difference)];
 
     else:
@@ -114,24 +107,5 @@ def luck(luck: int, difficult: int) -> str:
         difference = (difference/4)%4;
         difference += 5; 
         resp = achievement_scale[math.floor(difference)];
-
-
-    # if difference < 0:
-    #     resp = achievement_scale[4]
-    # if difference < -2:
-    #     resp = achievement_scale[3]
-    # if difference < -5:
-    #     resp = achievement_scale[2]
-    # if difference < -7:
-    #     resp = achievement_scale[1]
-
-    # if difference >= 0:
-    #     resp = achievement_scale[5]
-    # if difference >= 2:
-    #     resp = achievement_scale[6]
-    # if difference >= 5:
-    #     resp = achievement_scale[7]
-    # if difference >= 7:
-    #     resp = achievement_scale[8]
 
     return resp
